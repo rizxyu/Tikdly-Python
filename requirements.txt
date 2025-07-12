@@ -1,0 +1,5 @@
+undetected-chromedriver
+requests
+beautifulsoup4
+rich
+selenium
