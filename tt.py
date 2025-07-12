@@ -1,4 +1,3 @@
-
 import argparse
 
 from rich.console import Console
@@ -16,7 +15,7 @@ def print_intro():
         "[bold blue]TIKDLY — TikTok Downloader[/bold blue]\n"
         "[white]Author :[/white] [bold green]github.com/rizxyu[/bold green]\n"
         "[white]Version:[/white] 0.0.2\n"
-        "[white]Report :[/white] Found bug? [bold cyan]Open an issue on GitHub[/bold cyan]",
+        "[white]Report :[/white] Found bug? [bold cyan][link=https://github.com/rizxyu/Tikdly-Python/issues]Open an issue on GitHub[/link][/bold cyan]",
         title="[bold yellow]TIKDLY[/bold yellow]",
         border_style="cyan"
     ))
