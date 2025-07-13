@@ -1,0 +1,6 @@
+{
+  "User-Agent": "--log-level=0",
+  "Cookie": "msToken=IIde78TUXobo3sGqbz6YuczZO0-n3dWN-LSFJW7a6TDf5-Yi4V9tt8CuzGczcaXYQul_xYFkwBRa9FzKOLHMlcHj_AclEQXh-u3zCvcx_SfIq89pYZHYSfsCKbtE1nY4uA2UXIEnMqTaLBkN6sz2K595; odin_tt=175157d3d10904b60686edda2eae06eeb16c671e25c597fce20287366c0c9b6edbf615c0bbed1c043a9e378f9d09c1488de93bf125bd0a7fcf86ee55b69ea65c54379731aa18767b5589c5d5e56292b2; delay_guest_mode_vid=8; msToken=vdPvPUJ8vhXav7cRSXyOQpqenWwGIYEMiFHe7erglvHFPGOcPC-TubC7w0OB9DleBSRyOEZrvyNJEE50RFDa08g7zRrOjFEtftBPMKwXzEzQW62TH2dQNROUkWP6o3kIJUL8qPfHozJlY8yrV62A_jQt; tiktok_webapp_theme=dark; tiktok_webapp_theme_source=auto; tt_chain_token=VTBziIS4OqxEwZdPlLCHwA==; ttwid=1%7Cu5DQPC2FGP3DDN-laKzKpvybjX5uJFvfnUfarWTWN_o%7C1752404328%7C63779c7f28f0186e3c3891a98004b3665db038ebe91e929146216ad989328907; tt_csrf_token=Il8aQXPf-Q1yMJ5xL3Tn9v0-A6vRXVwR4aSs",
+  "Referer": "https://www.tiktok.com/",
+  "Accept-Language": "en-US,en;q=0.9"
+}

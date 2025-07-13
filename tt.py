@@ -1,7 +1,9 @@
 import argparse
-
 from rich.console import Console
 from rich.panel import Panel
+from rich.spinner import Spinner
+from rich.progress import Progress
+from time import sleep
 
 from core.getHeaders import get_tiktok_headers
 from core.dump import dump_tiktok_json
@@ -24,7 +26,6 @@ def print_intro():
 # === CLI entry ===
 if __name__ == "__main__":
     print_intro()
-
     parser = argparse.ArgumentParser(description="TIKDLY: TikTok Downloader CLI")
     parser.add_argument("--url", type=str, help="TikTok post URL")
     args = parser.parse_args()
@@ -34,13 +35,25 @@ if __name__ == "__main__":
     else:
         tiktok_url = input("📎 Enter TikTok URL: ").strip()
 
-    headers = get_tiktok_headers(tiktok_url)
+    with console.status("[bold cyan]Getting TikTok headers...") as status:
+        headers = get_tiktok_headers(tiktok_url)
+        sleep(0.5)
 
-    if dump_tiktok_json(tiktok_url, headers):
-        success = download_video_and_music(headers['Cookie'], "dump/tiktok_dump.json")
+    with console.status("[bold cyan]Dumping TikTok JSON...") as status:
+        dump_success = dump_tiktok_json(tiktok_url, headers)
+        sleep(0.5)
+
+    if dump_success:
+        with console.status("[bold cyan]Downloading video and music...") as status:
+            success = download_video_and_music(headers['Cookie'], "dump/tiktok_dump.json")
+            sleep(0.5)
         if not success:
             console.print("📸 Falling back to photo downloader...\n")
-            download_tiktok_photos(tiktok_url)
+            with console.status("[bold cyan]Downloading photos...") as status:
+                download_tiktok_photos(tiktok_url)
+                sleep(0.5)
     else:
         console.print("📸 Fallback triggered due to failed JSON. Trying photo downloader...\n")
-        download_tiktok_photos(tiktok_url)
+        with console.status("[bold cyan]Downloading photos...") as status:
+            download_tiktok_photos(tiktok_url)
+            sleep(0.5)

@@ -7,20 +7,22 @@ from rich.console import Console
 console = Console()
 
 def download_file(url, filename, headers):
+    os.makedirs("downloads", exist_ok=True)
+    path = os.path.join("downloads", filename)
+    if os.path.exists(path):
+        console.print(f"⚠️ [yellow]{filename} already exists. Skipping.[/yellow]")
+        return True
     try:
-        os.makedirs("downloads", exist_ok=True)
-        path = os.path.join("downloads", filename)
-        if os.path.exists(path):
-            console.print(f"⚠️ [yellow]{filename} already exists. Skipping.[/yellow]")
-            return
         with requests.get(url, headers=headers, stream=True) as r:
             r.raise_for_status()
             with open(path, "wb") as f:
                 for chunk in r.iter_content(8192):
                     f.write(chunk)
-        console.print(f"✅ Saved: downloads/{filename}")
+        console.print(f"✅ [green]Saved:[/green] downloads/{filename}")
+        return True
     except Exception as e:
-        console.print(f"❌ Failed to download {filename}: {e}")
+        console.print(f"❌ [red]Failed to download {filename}: {e}[/red]")
+        return False
 
 def download_video_and_music(cookie, json_path):
     try:
@@ -44,7 +46,8 @@ def download_video_and_music(cookie, json_path):
         "Cache-Control": "max-age=2592000"
     }
 
-    console.print("📥 Downloading video and music...")
-    download_file(video_url, f"{video_id}.mp4", headers)
-    download_file(music_url, f"{video_id}.mp3", headers)
-    return True
+    with console.status("[bold cyan]Downloading video...", spinner="dots"):
+        video_ok = download_file(video_url, f"{video_id}.mp4", headers)
+    with console.status("[bold cyan]Downloading music...", spinner="dots"):
+        music_ok = download_file(music_url, f"{video_id}.mp3", headers)
+    return video_ok and music_ok
